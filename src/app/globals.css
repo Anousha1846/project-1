@@ -2,32 +2,493 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  font-family: Arial, sans-serif;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+/* navbar start */
+.navbar {
+  width: 100%;
+  background-color: #whitesmoke;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.navContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+  font-family: serif
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  padding:6px
+}
+
+.bar, .barOpen {
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  margin: 4px 0;
+  transition: 0.4s;
+}
+
+.barOpen {
+  transform: rotate(45deg);
+}
+
+.barOpen:nth-child(2) {
+  opacity: 0;
+}
+
+.barOpen:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
+.navMenu {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navItem {
+  list-style: none;
+}
+
+.navLink {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+  transition: color 0.3s;
+  font-size: 1.1rem
+}
+
+.navLink:hover {
+  color: gray;
+  text-decoration: underline;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+  
+  .navMenu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    justify-content: center;
+    align-items : center;
+    padding:3px
+  }
+
+  .navMenu.active {
+    display: flex;
   }
 }
+
+/* navbar end */
+
+/* hero start */
+.banner-container {
+  position: relative;
+  width: 100%;
+  height: 580px; /* Default height */
+}
+
+.banner-container.md-height {
+  height: 585px;
+}
+
+.banner-image {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  color: white;
+}
+
+.text-container {
+  max-width: 89vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-container.md-max-width {
+  max-width: 60vw;
+}
+
+.title {
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 0.875rem; /* Small text */
+  animation: pulse 2s infinite;
+  max-width: 20rem;
+}
+
+.subheading {
+  padding: 1rem;
+  font-size: 1.25rem;
+  line-height: 1.25rem;
+  animation: pulse 2s infinite;
+}
+
+/* Gradient animation with subtle pulsing effect */
+@keyframes gradientPulse {
+  0% {
+    background: linear-gradient(45deg, #d3d3d3, #f5f5f5); /* light gray gradient */
+    background-size: 200% 200%;
+    color: transparent;
+    -webkit-background-clip: text;
+    opacity: 0.6; /* More subtle opacity */
+  }
+  50% {
+    background: linear-gradient(45deg, #f5f5f5, #e0e0e0); /* lighter gradient */
+    background-size: 200% 200%;
+    color: transparent;
+    -webkit-background-clip: text;
+    opacity: 1; /* Full opacity for better readability */
+  }
+  100% {
+    background: linear-gradient(45deg, #d3d3d3, #f5f5f5);
+    background-size: 200% 200%;
+    color: transparent;
+    -webkit-background-clip: text;
+    opacity: 0.8; /* Slight reduction in opacity for subtle pulse */
+  }
+}
+
+.description {
+  font-size: 3rem;
+  font-weight: 900;
+  margin-top: 1.6rem;
+  margin-bottom: 1rem;
+  animation: gradientPulse 3s ease-in-out infinite; /* Slightly longer, smoother transition */
+}
+
+@media (min-width: 768px) {
+  .banner-container.md-height {
+    height: 585px;
+  }
+
+  .text-container.md-max-width {
+    max-width: 40vw;
+  }
+ 
+}
+
+@media (max-width: 768px) {
+  
+  .description {
+    font-size: rem;
+    font-weight: bold
+  }
+  .title {
+    
+    font-size: 0.6rem; 
+  }
+  
+}
+
+/* hero end */
+
+/* about start */
+/* About Us main heading */
+.about-heading {
+  text-align: center;
+  font-size: 2.5rem; /* Adjust for large screens */
+  font-weight: 800; /* Bold for emphasis */
+  color: #0284c7; /* Fallback color */
+  margin-bottom: 1.5rem; /* Spacing below */
+  margin-top: 3.5rem; /* Spacing below */
+  letter-spacing: 0.1rem; /* Slight spacing for readability */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: black; /* Uses gradient color for text */
+  transition: transform 0.3s ease; /* Smooth animation */
+  position: relative;
+}
+
+.about-heading:hover {
+  transform: scale(1.05); /* Slight hover scale */
+}
+
+.about-heading::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background-color: #0284c7; /* Accent line color */
+  margin: 0.5rem auto; /* Center underline */
+  border-radius: 2px; /* Rounded edges */
+}
+
+/* Main container (about) */
+.about {
+  display: grid;
+  grid-template-columns: 3% 94% 3%;
+  height: 100%;
+  width: 100%;
+  background-color: whitesmoke; /* bg-slate-200 */
+  padding-top: 2.5rem; /* lg:py-20 */
+  padding-bottom: 2.5rem; /* py-10 */
+}
+
+/* About section container */
+.about-container {
+  display: grid;
+  grid-template-columns: 40% 60%; /* Image and text side by side by default */
+  border-radius: 1rem; /* rounded-xl */
+  justify-items: start; /* Align children to the left */
+}
+
+/* Image container (about-image-container) */
+.about-image-container {
+  padding-left: 2rem; /* md:px-8 */
+}
+
+/* Image styling (about-image) */
+.about-image {
+  padding: 0.5rem; /* p-2 */
+  border-radius: 1rem; /* rounded-xl */
+  width: 100%;
+  height: auto;
+  max-height: 380px; /* md:h-[400px] */
+  object-fit: cover; /* Optional: If you want the image to cover its container */
+}
+.about-image:hover{
+  transform: scale(1.05); /* Slight hover scale */
+
+}
+/* Text container (about-text-container) */
+.about-text-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem; /* gap-3 */
+  padding-top: 0.5rem; /* sm:pt-2 */
+  padding-bottom: 1.25rem; /* xl:py-10 */
+  padding-left: 1.5rem; /* px-6 */
+  padding-right: 1.5rem; /* px-6 */
+  text-align: left; /* Align text to the left */
+  width: 100%; /* Ensure container takes up full width */
+}
+
+/* Name styling */
+.about-name {
+  font-weight: 700; /* font-bold */
+  font-size: 2rem; /* text-3xl */
+  color: black; /* Updated to black */
+  animation: pulse 1s ease-in-out infinite; /* animate-pulse */
+  text-align: left; /* Left align the name */
+  margin-bottom: 1rem; /* Space below the name */
+}
+
+/* Description styling (about-description) */
+.about-description {
+  font-weight: 400; /* font-normal */
+  font-size: 1rem; /* text-md */
+  color: #4b5563; /* text-gray-700 */
+  text-align: left; /* Left align the description text */
+}
+
+/* Social links styling */
+.about-social-links {
+  display: flex;
+  gap: 1rem; /* gap-3 */
+  font-size: 1.25rem; /* text-xl */
+  color: black;
+  align-items: center; /* Align the social icons properly */
+  margin-top: 1rem; 
+  text-decoration: underline;
+}
+
+.about-social-links a {
+  text-decoration: none; 
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Responsive styles */
+
+/* For small screens (mobile, up to 640px) */
+@media (max-width: 640px) {
+  .about {
+    grid-template-columns: 1fr; /* Stack all sections vertically */
+    padding-top: 1rem; /* Reduced padding for smaller screens */
+    padding-bottom: 1rem;
+  }
+
+  .about-container {
+    grid-template-columns: 1fr; /* Stack image and text vertically */
+  }
+
+  .about-image-container {
+    padding-left: 0; /* Remove padding */
+  }
+
+  .about-image {
+    max-height: 300px;
+    width: 700px
+  }
+
+  .about-text-container {
+    padding-left: 1rem; /* Reduce padding for smaller screens */
+    padding-right: 1rem;
+  }
+
+  .about-name {
+    font-size: 1.5rem; /* Smaller font size on mobile */
+  }
+
+  .about-description {
+    font-size: 0.875rem; /* Smaller font size for better readability */
+  }
+
+  .about-social-links {
+    font-size: 1rem; /* Smaller font size for social links */
+  }
+}
+
+/* For medium screens (tablet, 641px to 1024px) */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .about {
+    grid-template-columns: 1fr; /* Stack all sections vertically */
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .about-container {
+    grid-template-columns: 1fr; /* Stack image and text vertically */
+  }
+
+  .about-image-container {
+    padding-left: 1rem; /* Padding for medium screens */
+  }
+
+  .about-image {
+    max-height: 350px;
+    width: 1000px;
+  }
+
+  .about-text-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .about-name {
+    font-size: 1.75rem; /* Adjust font size */
+  }
+
+  .about-description {
+    font-size: 1rem; /* Adjust font size for readability */
+  }
+
+  .about-social-links {
+    font-size: 1.125rem; /* Adjust font size */
+  }
+}
+
+/* For large screens (desktop, 1025px and up) */
+@media (min-width: 1025px) {
+  .about {
+    grid-template-columns: 3% 94% 3%; /* Larger column gap for large screens */
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .about-container {
+    grid-template-columns: 40% 60%; /* Image and text side by side */
+  }
+
+  .about-image {
+    height: 600px; 
+    width:600px
+  }
+
+  .about-name {
+    font-size: 2rem; /* Larger font size for the name */
+  }
+
+  .about-description {
+    font-size: 1.125rem; /* Larger font size for better readability */
+  }
+
+  .about-social-links {
+    font-size: 1.25rem; /* Larger social links */
+  }
+}
+
+/* footer start */
+.footer {
+  width: 100%;
+  min-height: 80px;
+  background-color: #0f172a; /* Equivalent to Tailwind's bg-slate-950 */
+  color: white;
+  text-align: center;
+  padding: 16px; /* Equivalent to Tailwind's p-4 */
+}
+
+.footerContent h1 {
+  font-weight: normal;
+  font-style: italic;
+}
+
+.footerContent h5 {
+  font-weight: normal;
+}
+
+.footerIcons {
+  display: flex;
+  gap: 8px; /* Equivalent to Tailwind's gap-2 */
+  justify-content: center;
+  padding: 16px; /* Equivalent to Tailwind's p-4 */
+}
+/* footer end */
